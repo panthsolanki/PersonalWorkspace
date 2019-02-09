@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
-import Loginscreen from './LoginContainer/Loginscreen'
+import 'App.css';
+import Loginscreen from 'LoginContainer/Loginscreen'
 class App extends Component {
   constructor(props){
     super(props);
@@ -25,7 +25,4 @@ class App extends Component {
     );
   }
 }
-const style = {
-  margin: 15,
-};
 export default App;
