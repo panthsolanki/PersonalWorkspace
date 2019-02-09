@@ -3,7 +3,7 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import RaisedButton from "material-ui/RaisedButton";
 import Login from "./Login";
 import Register from "./Register";
-import { auth, db, functions } from "./fb";
+import { auth, db } from "./fb";
 class Loginscreen extends Component {
   constructor(props) {
     super(props);
@@ -13,6 +13,7 @@ class Loginscreen extends Component {
       loginscreen: [],
       loginmessage: "",
       buttonLabel: "Register",
+      errormessage: "",
       isLogin: true
     };
   }
@@ -20,7 +21,7 @@ class Loginscreen extends Component {
     console.log(db);
     var loginscreen = [];
     loginscreen.push(
-      <Login parentContext={this} appContext={this.props.parentContext} />
+      <Login parentContext={this} appContext={this.props.parentContext} login={this.login} />
     );
     var loginmessage = "Not registered yet, Register Now";
     this.setState({
@@ -42,7 +43,7 @@ class Loginscreen extends Component {
       });
     } else {
       const loginscreen = [];
-      loginscreen.push(<Login parentContext={this}  login={this.login} />);
+      loginscreen.push(<Login parentContext={this} login={this.login} />);
       loginmessage = "Not Registered yet.Go to registration";
       this.setState({
         loginscreen: loginscreen,
@@ -52,17 +53,18 @@ class Loginscreen extends Component {
       });
     }
   }
-  login(email, password) {
+  login = (email, password) => {
     // log the user in
     console.log(`login with ${email} and ${password}`);
     auth.signInWithEmailAndPassword(email, password).then((cred) => {
       console.log(cred);
     }).catch(err => {
       console.log(err);
+      this.setState({ errormessage: err.message });
     });
   }
 
-  register(email, password) {
+  register = (email, password) => {
     console.log(`register with ${email} and ${password}`);
     // sign up the user & add firestore data
     auth.createUserWithEmailAndPassword(email, password).then(cred => {
@@ -72,6 +74,7 @@ class Loginscreen extends Component {
       // });
     }).catch(err => {
       console.log(err);
+      this.setState({ errormessage: err.message });
       // signupForm.querySelector('.error').innerHTML = err.message;
     });
   }
@@ -92,6 +95,7 @@ class Loginscreen extends Component {
               />
             </div>
           </MuiThemeProvider>
+          {this.state.errormessage}
         </div>
       </div>
     );
