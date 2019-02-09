@@ -1,54 +1,47 @@
-image: Visual Studio 2017
+# http://www.appveyor.com/docs/appveyor-yml
 
+# Set build version format here instead of in the admin panel
+version: '{build}'
+
+# Do not build on gh tags
+skip_tags: true
+
+# Test against these versions of Node.js
 environment:
-  APPVEYOR_SAVE_CACHE_ON_ERROR: true
-  APPVEYOR_BUILD_WORKER_CLOUD: 'GCE'
   matrix:
-    - nodejs_version: 10
-      test_suite: 'simple'
-    - nodejs_version: 10
-      test_suite: 'installs'
-    - nodejs_version: 10
-      test_suite: 'kitchensink'
-    - nodejs_version: 10
-      test_suite: 'kitchensink-eject'
-    - nodejs_version: 8
-      test_suite: 'simple'
-    - nodejs_version: 8
-      test_suite: 'installs'
-    - nodejs_version: 8
-      test_suite: 'kitchensink'
-    - nodejs_version: 8
-      test_suite: 'kitchensink-eject'
-cache:
-  - '%APPDATA%\npm-cache -> appveyor.cleanup-cache.txt'
-  - '%LOCALAPPDATA%\Yarn\Cache -> appveyor.cleanup-cache.txt'
+    # Node versions to run
+    - nodejs_version: 'Current'
+    - nodejs_version: 'LTS'
 
-clone_depth: 50
+# Fix line endings in Windows. (runs before repo cloning)
+init:
+  - git config --global core.autocrlf input
 
-matrix:
-  fast_finish: true
-  allow_failures:
-    - test_suite: 'installs'
-
-platform:
-  - x64
-
+# Install scripts--runs after repo cloning
 install:
-  - ps: Install-Product node $env:nodejs_version $env:platform
-  - ps: |
-      (New-Object Net.WebClient).DownloadFile("https://yarnpkg.com/latest.msi", "$env:temp\yarn.msi")
-      cmd /c start /wait msiexec.exe /i $env:temp\yarn.msi /quiet /qn /norestart
+  # Install chrome
+  - choco install -y googlechrome --ignore-checksums
+  # Install the latest stable version of Node
+  - ps: Install-Product node $env:nodejs_version
+  - npm ci
 
+# Disable automatic builds
 build: off
 
-skip_commits:
-  files:
-    - '**/*.md'
-
+# Post-install test scripts
 test_script:
+  # Output debugging info
   - node --version
-  - npm --version
-  - yarn --version
-  - yarn cache dir
-  - bash tasks/e2e-%test_suite%.sh
+  - node ./internals/scripts/generate-templates-for-linting
+  # run tests and run build
+  - npm run test
+  - npm run build
+
+# Cache node_modules for faster builds
+cache:
+  - node_modules -> package.json
+
+# remove, as appveyor doesn't support secure variables on pr builds
+# so `COVERALLS_REPO_TOKEN` cannot be set, without hard-coding in this file
+#on_success:
+#- npm run coveralls

@@ -1,203 +1,156 @@
-# Create React App [![Build Status](https://travis-ci.org/facebook/create-react-app.svg?branch=master)](https://travis-ci.org/facebook/create-react-app) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/facebook/create-react-app/pulls)
-
-Create React apps with no build configuration.
-
-- [Creating an App](#creating-an-app) – How to create a new app.
-- [User Guide](https://facebook.github.io/create-react-app/) – How to develop apps bootstrapped with Create React App.
-
-Create React App works on macOS, Windows, and Linux.<br>
-If something doesn’t work, please [file an issue](https://github.com/facebook/create-react-app/issues/new).
-
-## Quick Overview
-
-```sh
-npx create-react-app my-app
-cd my-app
-npm start
-```
-
-_([npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) comes with npm 5.2+ and higher, see [instructions for older npm versions](https://gist.github.com/gaearon/4064d3c23a77c74a3614c498a8bb1c5f))_
-
-Then open [http://localhost:3000/](http://localhost:3000/) to see your app.<br>
-When you’re ready to deploy to production, create a minified bundle with `npm run build`.
-
-<p align='center'>
-<img src='https://cdn.rawgit.com/facebook/create-react-app/27b42ac/screencast.svg' width='600' alt='npm start'>
-</p>
-
-### Get Started Immediately
-
-You **don’t** need to install or configure tools like Webpack or Babel.<br>
-They are preconfigured and hidden so that you can focus on the code.
-
-Just create a project, and you’re good to go.
-
-## Creating an App
-
-**You’ll need to have Node 8.10.0 or later on your local development machine** (but it’s not required on the server). You can use [nvm](https://github.com/creationix/nvm#installation) (macOS/Linux) or [nvm-windows](https://github.com/coreybutler/nvm-windows#node-version-manager-nvm-for-windows) to easily switch Node versions between different projects.
-
-To create a new app, you may choose one of the following methods:
-
-### npx
-
-```sh
-npx create-react-app my-app
-```
-
-_([npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) comes with npm 5.2+ and higher, see [instructions for older npm versions](https://gist.github.com/gaearon/4064d3c23a77c74a3614c498a8bb1c5f))_
-
-### npm
-
-```sh
-npm init react-app my-app
-```
-
-_`npm init <initializer>` is available in npm 6+_
-
-### Yarn
-
-```sh
-yarn create react-app my-app
-```
-
-_`yarn create` is available in Yarn 0.25+_
-
-It will create a directory called `my-app` inside the current folder.<br>
-Inside that directory, it will generate the initial project structure and install the transitive dependencies:
-
-```
-my-app
-├── README.md
-├── node_modules
-├── package.json
-├── .gitignore
-├── public
-│   ├── favicon.ico
-│   ├── index.html
-│   └── manifest.json
-└── src
-    ├── App.css
-    ├── App.js
-    ├── App.test.js
-    ├── index.css
-    ├── index.js
-    ├── logo.svg
-    └── serviceWorker.js
-```
-
-No configuration or complicated folder structures, just the files you need to build your app.<br>
-Once the installation is done, you can open your project folder:
-
-```sh
-cd my-app
-```
-
-Inside the newly created project, you can run some built-in commands:
-
-### `npm start` or `yarn start`
-
-Runs the app in development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will automatically reload if you make changes to the code.<br>
-You will see the build errors and lint warnings in the console.
-
-<p align='center'>
-<img src='https://cdn.rawgit.com/marionebl/create-react-app/9f62826/screencast-error.svg' width='600' alt='Build errors'>
-</p>
-
-### `npm test` or `yarn test`
-
-Runs the test watcher in an interactive mode.<br>
-By default, runs tests related to files changed since the last commit.
-
-[Read more about testing.](https://facebook.github.io/create-react-app/docs/running-tests)
-
-### `npm run build` or `yarn build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-
-Your app is ready to be deployed.
-
-## User Guide
-
-You can find detailed instructions on using Create React App and many tips in [its documentation](https://facebook.github.io/create-react-app/).
-
-## How to Update to New Versions?
-
-Please refer to the [User Guide](https://facebook.github.io/create-react-app/docs/updating-to-new-releases) for this and other information.
-
-## Philosophy
-
-- **One Dependency:** There is just one build dependency. It uses Webpack, Babel, ESLint, and other amazing projects, but provides a cohesive curated experience on top of them.
-
-- **No Configuration Required:** You don't need to configure anything. A reasonably good configuration of both development and production builds is handled for you so you can focus on writing code.
-
-- **No Lock-In:** You can “eject” to a custom setup at any time. Run a single command, and all the configuration and build dependencies will be moved directly into your project, so you can pick up right where you left off.
-
-## What’s Included?
-
-Your environment will have everything you need to build a modern single-page React app:
-
-- React, JSX, ES6, TypeScript and Flow syntax support.
-- Language extras beyond ES6 like the object spread operator.
-- Autoprefixed CSS, so you don’t need `-webkit-` or other prefixes.
-- A fast interactive unit test runner with built-in support for coverage reporting.
-- A live development server that warns about common mistakes.
-- A build script to bundle JS, CSS, and images for production, with hashes and sourcemaps.
-- An offline-first [service worker](https://developers.google.com/web/fundamentals/getting-started/primers/service-workers) and a [web app manifest](https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/), meeting all the [Progressive Web App](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app) criteria. (_Note: Using the service worker is opt-in as of `react-scripts@2.0.0` and higher_)
-- Hassle-free updates for the above tools with a single dependency.
-
-Check out [this guide](https://github.com/nitishdayal/cra_closer_look) for an overview of how these tools fit together.
-
-The tradeoff is that **these tools are preconfigured to work in a specific way**. If your project needs more customization, you can ["eject"](https://facebook.github.io/create-react-app/docs/available-scripts#npm-run-eject) and customize it, but then you will need to maintain this configuration.
-
-## Popular Alternatives
-
-Create React App is a great fit for:
-
-- **Learning React** in a comfortable and feature-rich development environment.
-- **Starting new single-page React applications.**
-- **Creating examples** with React for your libraries and components.
-
-Here are a few common cases where you might want to try something else:
-
-- If you want to **try React** without hundreds of transitive build tool dependencies, consider [using a single HTML file or an online sandbox instead](https://reactjs.org/docs/try-react.html).
-
-- If you need to **integrate React code with a server-side template framework** like Rails, Django or Symfony, or if you’re **not building a single-page app**, consider using [nwb](https://github.com/insin/nwb), or [Neutrino](https://neutrino.js.org/) which are more flexible. For Rails specifically, you can use [Rails Webpacker](https://github.com/rails/webpacker). For Symfony, try [Symfony's Webpack Encore](https://symfony.com/doc/current/frontend/encore/reactjs.html).
-
-- If you need to **publish a React component**, [nwb](https://github.com/insin/nwb) can [also do this](https://github.com/insin/nwb#react-components-and-libraries), as well as [Neutrino's react-components preset](https://neutrino.js.org/packages/react-components/).
-
-- If you want to do **server rendering** with React and Node.js, check out [Next.js](https://github.com/zeit/next.js/) or [Razzle](https://github.com/jaredpalmer/razzle). Create React App is agnostic of the backend, and just produces static HTML/JS/CSS bundles.
-
-- If your website is **mostly static** (for example, a portfolio or a blog), consider using [Gatsby](https://www.gatsbyjs.org/) instead. Unlike Create React App, it pre-renders the website into HTML at the build time.
-
-- Finally, if you need **more customization**, check out [Neutrino](https://neutrino.js.org/) and its [React preset](https://neutrino.js.org/packages/react/).
-
-All of the above tools can work with little to no configuration.
-
-If you prefer configuring the build yourself, [follow this guide](https://reactjs.org/docs/add-react-to-an-existing-app.html).
-
-## Contributing
-
-We'd love to have your helping hand on `create-react-app`! See [CONTRIBUTING.md](CONTRIBUTING.md) for more information on what we're looking for and how to get started.
-
-## React Native
-
-Looking for something similar, but for React Native?<br>
-Check out [Expo CLI](https://github.com/expo/expo-cli).
-
-## Acknowledgements
-
-We are grateful to the authors of existing related projects for their ideas and collaboration:
-
-- [@eanplatter](https://github.com/eanplatter)
-- [@insin](https://github.com/insin)
-- [@mxstbr](https://github.com/mxstbr)
+<img src="https://raw.githubusercontent.com/react-boilerplate/react-boilerplate-brand/master/assets/banner-metal-optimized.jpg" alt="react boilerplate banner" align="center" />
+
+<br />
+
+<div align="center"><strong>Start your next react project in seconds</strong></div>
+<div align="center">A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices</div>
+
+<br />
+
+<div align="center">
+  <!-- Dependency Status -->
+  <a href="https://david-dm.org/react-boilerplate/react-boilerplate">
+    <img src="https://david-dm.org/react-boilerplate/react-boilerplate.svg" alt="Dependency Status" />
+  </a>
+  <!-- devDependency Status -->
+  <a href="https://david-dm.org/react-boilerplate/react-boilerplate#info=devDependencies">
+    <img src="https://david-dm.org/react-boilerplate/react-boilerplate/dev-status.svg" alt="devDependency Status" />
+  </a>
+  <!-- Build Status -->
+  <a href="https://travis-ci.org/react-boilerplate/react-boilerplate">
+    <img src="https://travis-ci.org/react-boilerplate/react-boilerplate.svg" alt="Build Status" />
+  </a>
+  <!-- Test Coverage -->
+  <a href="https://coveralls.io/r/react-boilerplate/react-boilerplate">
+    <img src="https://coveralls.io/repos/github/react-boilerplate/react-boilerplate/badge.svg" alt="Test Coverage" />
+  </a>
+  <a href="https://spectrum.chat/react-boilerplate">
+  <img alt="Chat with us on Spectrum" src="https://withspectrum.github.io/badge/badge.svg" />
+</a>
+
+</div>
+<div align="center">
+    <!-- Backers -->
+  <a href="#backers">
+    <img src="https://opencollective.com/react-boilerplate/backers/badge.svg" alt="Backers" />
+  </a>
+      <!-- Sponsors -->
+  <a href="#sponsors">
+    <img src="https://opencollective.com/react-boilerplate/sponsors/badge.svg" alt="Sponsors" />
+  </a>
+  <a href="http://thinkmill.com.au/?utm_source=github&utm_medium=badge&utm_campaign=react-boilerplate">
+    <img alt="Supported by Thinkmill" src="https://thinkmill.github.io/badge/heart.svg" />
+  </a>
+</div>
+
+<br />
+
+<div align="center">
+  <sub>Created by <a href="https://twitter.com/mxstbr">Max Stoiber</a> and maintained with ❤️ by an amazing <a href="https://github.com/orgs/react-boilerplate/teams/core">team of developers</a>.</sub>
+</div>
+
+## Features
+
+<dl>
+  <dt>Quick scaffolding</dt>
+  <dd>Create components, containers, routes, selectors and sagas - and their tests - right from the CLI!</dd>
+
+  <dt>Instant feedback</dt>
+  <dd>Enjoy the best DX (Developer eXperience) and code your app at the speed of thought! Your saved changes to the CSS and JS are reflected instantaneously without refreshing the page. Preserve application state even when you update something in the underlying code!</dd>
+
+  <dt>Predictable state management</dt>
+  <dd>Unidirectional data flow allows for change logging and time travel debugging.</dd>
+
+  <dt>Next generation JavaScript</dt>
+  <dd>Use template strings, object destructuring, arrow functions, JSX syntax and more.</dd>
+
+  <dt>Next generation CSS</dt>
+  <dd>Write composable CSS that's co-located with your components for complete modularity. Unique generated class names keep the specificity low while eliminating style clashes. Ship only the styles that are on the page for the best performance.</dd>
+
+  <dt>Industry-standard routing</dt>
+  <dd>It's natural to want to add pages (e.g. `/about`) to your application, and routing makes this possible.</dd>
+
+  <dt>Industry-standard i18n internationalization support</dt>
+  <dd>Scalable apps need to support multiple languages, easily add and support multiple languages with `react-intl`.</dd>
+
+  <dt>Offline-first</dt>
+  <dd>The next frontier in performant web apps: availability without a network connection from the instant your users load the app.</dd>
+
+  <dt>Static code analysis</dt>
+  <dd>Focus on writing new features without worrying about formatting or code quality. With the right editor setup, your code will automatically be formatted and linted as you work.</dd>
+
+  <dt>SEO</dt>
+  <dd>We support SEO (document head tags management) for search engines that support indexing of JavaScript content. (eg. Google)</dd>
+</dl>
+
+But wait... there's more!
+
+- _The best test setup:_ Automatically guarantee code quality and non-breaking
+  changes. (Seen a react app with 100% test coverage before?)
+- _Native web app:_ Your app's new home? The home screen of your users' phones.
+- _The fastest fonts:_ Say goodbye to vacant text.
+- _Stay fast_: Profile your app's performance from the comfort of your command
+  line!
+- _Catch problems:_ AppVeyor and TravisCI setups included by default, so your
+  tests get run automatically on Windows and Unix.
+
+There’s also a <a href="https://vimeo.com/168648012">fantastic video</a> on how to structure your React.js apps with scalability in mind. It provides rationale for the majority of boilerplate's design decisions.
+
+<sub><i>Keywords: React.js, Redux, Hot Reloading, ESNext, Babel, react-router, Offline First, ServiceWorker, `styled-components`, redux-saga, FontFaceObserver</i></sub>
+
+## Quick start
+
+1.  Make sure that you have Node.js v8.10 and npm v5 or above installed.
+2.  Clone this repo using `git clone --depth=1 https://github.com/react-boilerplate/react-boilerplate.git <YOUR_PROJECT_NAME>`
+3.  Move to the appropriate directory: `cd <YOUR_PROJECT_NAME>`.<br />
+4.  Run `npm run setup` in order to install dependencies and clean the git repo.<br />
+    _At this point you can run `npm start` to see the example app at `http://localhost:3000`._
+5.  Run `npm run clean` to delete the example app.
+
+Now you're ready to rumble!
+
+> Please note that this boilerplate is **production-ready and not meant for beginners**! If you're just starting out with react or redux, please refer to https://github.com/petehunt/react-howto instead. If you want a solid, battle-tested base to build your next product upon and have some experience with react, this is the perfect start for you.
+
+## Documentation
+
+- [**The Hitchhikers Guide to `react-boilerplate`**](docs/general/introduction.md): An introduction for newcomers to this boilerplate.
+- [Overview](docs/general): A short overview of the included tools
+- [**Commands**](docs/general/commands.md): Getting the most out of this boilerplate
+- [Testing](docs/testing): How to work with the built-in test harness
+- [Styling](docs/css): How to work with the CSS tooling
+- [Your app](docs/js): Supercharging your app with Routing, Redux, simple
+  asynchronicity helpers, etc.
+- [**Troubleshooting**](docs/general/gotchas.md): Solutions to common problems faced by developers.
+
+## Supporters
+
+This project would not be possible without the support by these amazing folks. [**Become a sponsor**](https://opencollective.com/react-boilerplate) to get your company in front of thousands of engaged react developers and help us out!
+
+<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/0/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/1/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/2/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/3/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/4/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/5/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/6/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/7/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/8/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/9/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/9/avatar.svg"></a>
+
+---
+
+<a href="https://opencollective.com/react-boilerplate/backer/0/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/0/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/1/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/1/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/2/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/2/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/3/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/3/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/4/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/4/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/5/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/5/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/6/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/6/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/7/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/7/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/8/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/8/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/9/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/9/avatar.svg"></a>
 
 ## License
 
-Create React App is open source software [licensed as MIT](https://github.com/facebook/create-react-app/blob/master/LICENSE).
+This project is licensed under the MIT license, Copyright (c) 2018 Maximilian
+Stoiber. For more information see `LICENSE.md`.
