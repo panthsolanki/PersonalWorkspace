@@ -3,7 +3,7 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import RaisedButton from "material-ui/RaisedButton";
 import Login from "./Login";
 import Register from "./Register";
-import { auth, db } from "./fb";
+import { auth, db } from "../fb";
 class Loginscreen extends Component {
   constructor(props) {
     super(props);
