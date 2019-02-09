@@ -7,12 +7,14 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
+      email: "",
       password: ""
     };
   }
   handleClick(event) {
     console.log("Login button clicked");
+    const { email, password } = this.state;
+    this.props.login(email, password);
   }
 
   render() {
@@ -22,11 +24,10 @@ class Login extends Component {
           <div>
             <AppBar title="Login" />
             <TextField
-              hintText="Enter your Username"
-              floatingLabelText="Username"
-              onChange={(event, newValue) =>
-                this.setState({ username: newValue })
-              }
+              hintText="Enter your Email"
+              type="email"
+              floatingLabelText="Email"
+              onChange={(event, newValue) => this.setState({ email: newValue })}
             />
             <br />
             <TextField

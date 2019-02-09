@@ -15,7 +15,9 @@ class Register extends Component {
   }
 
   handleClick(event) {
-   console.log("Register button clicked");
+    console.log("Register button clicked");
+    const { email, password } = this.state;
+    this.props.register(email, password);
   }
 
   render() {

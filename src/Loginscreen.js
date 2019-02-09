@@ -3,6 +3,7 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import RaisedButton from "material-ui/RaisedButton";
 import Login from "./Login";
 import Register from "./Register";
+import { auth, db, functions } from "./fb";
 class Loginscreen extends Component {
   constructor(props) {
     super(props);
@@ -16,6 +17,7 @@ class Loginscreen extends Component {
     };
   }
   componentWillMount() {
+    console.log(db);
     var loginscreen = [];
     loginscreen.push(
       <Login parentContext={this} appContext={this.props.parentContext} />
@@ -30,7 +32,7 @@ class Loginscreen extends Component {
     let loginmessage;
     if (this.state.isLogin) {
       const loginscreen = [];
-      loginscreen.push(<Register parentContext={this} />);
+      loginscreen.push(<Register parentContext={this} register={this.register} />);
       loginmessage = "Already registered.Go to Login";
       this.setState({
         loginscreen: loginscreen,
@@ -40,7 +42,7 @@ class Loginscreen extends Component {
       });
     } else {
       const loginscreen = [];
-      loginscreen.push(<Login parentContext={this} />);
+      loginscreen.push(<Login parentContext={this}  login={this.login} />);
       loginmessage = "Not Registered yet.Go to registration";
       this.setState({
         loginscreen: loginscreen,
@@ -50,6 +52,30 @@ class Loginscreen extends Component {
       });
     }
   }
+  login(email, password) {
+    // log the user in
+    console.log(`login with ${email} and ${password}`);
+    auth.signInWithEmailAndPassword(email, password).then((cred) => {
+      console.log(cred);
+    }).catch(err => {
+      console.log(err);
+    });
+  }
+
+  register(email, password) {
+    console.log(`register with ${email} and ${password}`);
+    // sign up the user & add firestore data
+    auth.createUserWithEmailAndPassword(email, password).then(cred => {
+      console.log(cred);
+      // return db.collection('users').doc(cred.user.uid).set({
+      //   bio: signupForm['signup-bio'].value
+      // });
+    }).catch(err => {
+      console.log(err);
+      // signupForm.querySelector('.error').innerHTML = err.message;
+    });
+  }
+
   render() {
     return (
       <div className="loginscreen">
