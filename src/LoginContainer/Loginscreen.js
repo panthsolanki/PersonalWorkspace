@@ -4,100 +4,117 @@ import RaisedButton from "material-ui/RaisedButton";
 import Login from "LoginContainer/Login";
 import Register from "LoginContainer/Register";
 import { auth, db } from "fb";
+import { ColumnDiv } from "baseStyled";
+import { ContainerWrapper } from 'LoginContainer/styled'
+
 class Loginscreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username: "",
       password: "",
-      loginscreen: {},
       loginmessage: "",
       buttonLabel: "Register",
       errormessage: "",
       isLogin: true
     };
   }
-  componentWillMount() {
+  componentWillMount = () => {
     console.log(db);
-    const loginscreen = <Login parentContext={this} appContext={this.props.parentContext} login={this.login} />;
+    this.initConfig();
+  };
+
+  initConfig = () => {
     const loginmessage = "Not registered yet, Register Now";
     this.setState({
-      loginscreen: loginscreen,
       loginmessage: loginmessage
     });
-  }
-  handleClick(event) {
+  };
+
+  handleClick = event => {
     let loginmessage;
-    this.setState({errormessage:''});
+    this.setState({ errormessage: "" });
     if (this.state.isLogin) {
-      const loginscreen = <Register parentContext={this} register={this.register} />;
       loginmessage = "Already registered.Go to Login";
       this.setState({
-        loginscreen,
-        loginmessage: loginmessage,
+        loginmessage,
         buttonLabel: "Login",
         isLogin: false
       });
     } else {
-      const loginscreen = <Login parentContext={this} login={this.login} />;
       loginmessage = "Not Registered yet.Go to registration";
       this.setState({
-        loginscreen,
-        loginmessage: loginmessage,
+        loginmessage,
         buttonLabel: "Register",
         isLogin: true
       });
     }
-  }
+  };
   login = (email, password) => {
     // log the user in
     console.log(`login with ${email} and ${password}`);
-    auth.signInWithEmailAndPassword(email, password).then((cred) => {
-      console.log(cred);
-    }).catch(err => {
-      console.log(err);
-      this.setState({ errormessage: err.message });
-    });
-  }
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then(cred => {
+        console.log(cred);
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({ errormessage: err.message });
+      });
+  };
 
   register = (email, password) => {
     console.log(`register with ${email} and ${password}`);
     // sign up the user & add firestore data
-    auth.createUserWithEmailAndPassword(email, password).then(cred => {
-      console.log(cred);
-      // return db.collection('users').doc(cred.user.uid).set({
-      //   bio: signupForm['signup-bio'].value
-      // });
-    }).catch(err => {
-      console.log(err);
-      this.setState({ errormessage: err.message });
-      // signupForm.querySelector('.error').innerHTML = err.message;
-    });
-  }
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then(cred => {
+        console.log(cred);
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({ errormessage: err.message });
+      });
+  };
 
   render() {
+    const { isLogin } = this.state;
+    const loginComp = (
+      <Login
+        parentContext={this}
+        appContext={this.props.parentContext}
+        login={this.login}
+      />
+    );
+    const registerComp = (
+      <Register parentContext={this} register={this.register} />
+    );
+    const renderComp = isLogin ? loginComp : registerComp;
+
     return (
-      <div className="loginscreen">
-        {this.state.loginscreen}
-        <div>
-          {this.state.loginmessage}
-          <MuiThemeProvider>
-            <div>
-              <RaisedButton
-                label={this.state.buttonLabel}
-                primary={true}
-                style={style}
-                onClick={event => this.handleClick(event)}
-              />
-            </div>
-          </MuiThemeProvider>
-          {this.state.errormessage}
-        </div>
-      </div>
+        <ContainerWrapper>
+          {renderComp}
+          <ColumnDiv>
+            {this.state.loginmessage}
+            <MuiThemeProvider>
+              <ColumnDiv>
+                <RaisedButton
+                  label={this.state.buttonLabel}
+                  primary={true}
+                  style={style}
+                  onClick={event => this.handleClick(event)}
+                />
+              </ColumnDiv>
+            </MuiThemeProvider>
+            {this.state.errormessage}
+          </ColumnDiv>
+        </ContainerWrapper>
     );
   }
 }
 const style = {
-  margin: 15
+  marginTop: 15,
+  marginBottom : 15
 };
 export default Loginscreen;

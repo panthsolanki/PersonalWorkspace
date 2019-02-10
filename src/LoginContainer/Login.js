@@ -3,6 +3,9 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import AppBar from "material-ui/AppBar";
 import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
+import { ColumnDiv } from "baseStyled";
+import { LoginWrapper } from "LoginContainer/styled"
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -19,15 +22,16 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
+      <LoginWrapper>
         <MuiThemeProvider>
-          <div>
+          <ColumnDiv>
             <AppBar title="Login" />
             <TextField
               hintText="Enter your Email"
               type="email"
               floatingLabelText="Email"
               onChange={(event, newValue) => this.setState({ email: newValue })}
+              style = {{width: "100%"}}
             />
             <br />
             <TextField
@@ -37,6 +41,7 @@ class Login extends Component {
               onChange={(event, newValue) =>
                 this.setState({ password: newValue })
               }
+              style = {{width: "100%"}}
             />
             <br />
             <RaisedButton
@@ -45,13 +50,14 @@ class Login extends Component {
               style={style}
               onClick={event => this.handleClick(event)}
             />
-          </div>
+          </ColumnDiv>
         </MuiThemeProvider>
-      </div>
+      </LoginWrapper>
     );
   }
 }
 const style = {
-  margin: 15
+  marginTop: 15,
+  marginBottom : 15
 };
 export default Login;

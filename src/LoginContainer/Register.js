@@ -3,6 +3,8 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import AppBar from "material-ui/AppBar";
 import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
+import { ColumnDiv } from "baseStyled";
+
 class Register extends Component {
   constructor(props) {
     super(props);
@@ -22,9 +24,9 @@ class Register extends Component {
 
   render() {
     return (
-      <div>
+      <ColumnDiv>
         <MuiThemeProvider>
-          <div>
+          <ColumnDiv>
             <AppBar title="Register" />
             <TextField
               hintText="Enter your First Name"
@@ -64,13 +66,14 @@ class Register extends Component {
               style={style}
               onClick={event => this.handleClick(event)}
             />
-          </div>
+          </ColumnDiv>
         </MuiThemeProvider>
-      </div>
+      </ColumnDiv>
     );
   }
 }
 const style = {
-  margin: 15
+  marginTop: 15,
+  marginBottom : 15
 };
 export default Register;
