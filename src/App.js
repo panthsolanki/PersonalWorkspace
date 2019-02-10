@@ -5,16 +5,13 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state={
-      loginPage:[],
+      loginPage:{},
       uploadScreen:[]
     }
   }
   componentWillMount(){
-    var loginPage =[];
-    loginPage.push(<Loginscreen parentContext={this}/>);
-    this.setState({
-                  loginPage:loginPage
-                    })
+    const loginPage = <Loginscreen parentContext={this}/>;
+    this.setState({loginPage})
   }
   render() {
     return (

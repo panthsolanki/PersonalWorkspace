@@ -10,7 +10,7 @@ class Loginscreen extends Component {
     this.state = {
       username: "",
       password: "",
-      loginscreen: [],
+      loginscreen: {},
       loginmessage: "",
       buttonLabel: "Register",
       errormessage: "",
@@ -19,11 +19,8 @@ class Loginscreen extends Component {
   }
   componentWillMount() {
     console.log(db);
-    var loginscreen = [];
-    loginscreen.push(
-      <Login parentContext={this} appContext={this.props.parentContext} login={this.login} />
-    );
-    var loginmessage = "Not registered yet, Register Now";
+    const loginscreen = <Login parentContext={this} appContext={this.props.parentContext} login={this.login} />;
+    const loginmessage = "Not registered yet, Register Now";
     this.setState({
       loginscreen: loginscreen,
       loginmessage: loginmessage
@@ -31,22 +28,21 @@ class Loginscreen extends Component {
   }
   handleClick(event) {
     let loginmessage;
+    this.setState({errormessage:''});
     if (this.state.isLogin) {
-      const loginscreen = [];
-      loginscreen.push(<Register parentContext={this} register={this.register} />);
+      const loginscreen = <Register parentContext={this} register={this.register} />;
       loginmessage = "Already registered.Go to Login";
       this.setState({
-        loginscreen: loginscreen,
+        loginscreen,
         loginmessage: loginmessage,
         buttonLabel: "Login",
         isLogin: false
       });
     } else {
-      const loginscreen = [];
-      loginscreen.push(<Login parentContext={this} login={this.login} />);
+      const loginscreen = <Login parentContext={this} login={this.login} />;
       loginmessage = "Not Registered yet.Go to registration";
       this.setState({
-        loginscreen: loginscreen,
+        loginscreen,
         loginmessage: loginmessage,
         buttonLabel: "Register",
         isLogin: true
